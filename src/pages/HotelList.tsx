@@ -24,11 +24,10 @@ const HotelList: React.FC = () => {
       try {
         const data = await hotelService?.getAllHotels();
         
-        if (data) {
-          setHotels(data);
-        }
+        setHotels(data ?? [] as Hotel[]);
       } catch (err) {
         console.log(err);
+        setHotels([] as Hotel[]);
       } finally {
         setLoading(false);
       }

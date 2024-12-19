@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-
 import { CircularProgress, Typography, Box, Button, Card, CardContent, Grid, CardMedia } from "@mui/material";
 import { HotelServiceContext } from "../context/hotelServiceContext";
 import { Hotel } from "../models/Hotel";
@@ -8,20 +7,19 @@ import { Hotel } from "../models/Hotel";
 const HotelDetails: React.FC = () => {
   const { id } = useParams();
   const hotelService = useContext(HotelServiceContext);
-  const [hotel, setHotel] = useState<Hotel | null | undefined>(null);
+  const [hotel, setHotel] = useState<Hotel | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchHotel = async () => {
-      if (id) {
-        try {
-          const hotelData = await hotelService?.getHotelById(Number(id));
-          setHotel(hotelData);
-        } catch (err) {
-          console.log(err);
-        } finally {
-          setLoading(false);
-        }
+      try {
+        const hotelData = id ? await hotelService?.getHotelById(Number(id)) : null;
+        setHotel(hotelData ?? null);
+      } catch (err) {
+        console.error("Error fetching hotel:", err);
+        setHotel(null); // Set to null in case of error
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -33,9 +31,8 @@ const HotelDetails: React.FC = () => {
 
   const defaultImageUrl = "https://via.placeholder.com/600x400?text=No+Image+Available";
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = defaultImageUrl;
-    e.currentTarget.style.backgroundColor = "black";
   };
 
   return (
@@ -49,7 +46,6 @@ const HotelDetails: React.FC = () => {
       </Grid>
       <Card sx={{ maxWidth: 1200, margin: "0 auto", boxShadow: 3 }}>
         <Grid container spacing={3}>
-          {/* Image and Info Section */}
           <Grid item xs={12} md={6}>
             <CardMedia
               component="img"
@@ -57,12 +53,7 @@ const HotelDetails: React.FC = () => {
               image={hotel.imageUrl || defaultImageUrl}
               alt={hotel.name}
               onError={handleImageError}
-              sx={{
-                width: "100%",
-                height: 400,
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
+              sx={{ width: "100%", height: 400, objectFit: "cover", borderRadius: "8px" }}
             />
           </Grid>
           <Grid item xs={12} md={6}>
