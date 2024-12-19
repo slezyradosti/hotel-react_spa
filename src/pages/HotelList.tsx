@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HotelServiceContext } from "../context/hotelServiceContext";
 import HotelCard from "../components/HotelCard";
+import { Grid } from "@mui/material";
 
 interface Hotel {
   id: number;
@@ -32,13 +33,13 @@ const HotelList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      {hotels.map((hotel) => (
-        <div>
-          <HotelCard hotel={hotel} />
-        </div>
-      ))}
-    </div>
+    <Grid container spacing={4}>
+        {hotels.map((hotel) => (
+          <Grid item xs={12} sm={6} md={4} key={hotel.id}>
+            <HotelCard hotel={hotel} />
+          </Grid>
+        ))}
+      </Grid>
   );
 };
 
