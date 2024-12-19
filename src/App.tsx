@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './App.css'
 import { HotelServiceContext } from './context/hotelServiceContext';
 import HotelList from './pages/HotelList'
@@ -14,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/hotels/:id" element={<HotelDetails />} />
           <Route path="/hotels" element={<HotelList />} />
-          <Route path="/*" element={<HotelList />} />
+          <Route path="/" element={<Navigate to="/hotels" />} />
+          <Route path="*" element={<Navigate to="/hotels" />} />
         </Routes>
       </HotelServiceContext.Provider>
     </Router>
