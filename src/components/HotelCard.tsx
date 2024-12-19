@@ -14,8 +14,13 @@ import {
   Divider,
 } from "@mui/material";
 import { Hotel } from "../models/Hotel";
+import { Link } from "react-router-dom";
 
-const HotelCard: React.FC<{ hotel: Hotel }> = ({ hotel }) => {
+interface HotelCardProps {
+  hotel: Hotel;
+}
+
+const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
   const fallbackImage = "https://via.placeholder.com/345x194?text=No+Image+Available";
   const dateRange = hotel.datesOfTravel.length === 2 ? `${hotel.datesOfTravel[0]} - ${hotel.datesOfTravel[1]}` : "Invalid date range";
 
@@ -66,9 +71,9 @@ const HotelCard: React.FC<{ hotel: Hotel }> = ({ hotel }) => {
         </List>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
-          View Details
-        </Button>
+        <Link to={`/hotels/${hotel.id}`}>
+          <Button variant="contained" color="primary">View Details</Button>
+        </Link>
       </CardActions>
     </Card>
   );

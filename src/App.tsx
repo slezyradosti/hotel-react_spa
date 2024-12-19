@@ -12,8 +12,8 @@ function App() {
     <Router>
       <HotelServiceContext.Provider value={hotelService}>
         <Routes>
-          <Route path="/hotels" element={<HotelList />} />
           <Route path="/hotels/:id" element={<HotelDetails />} />
+          <Route path="/hotels" element={<HotelList />} />
           <Route path="/*" element={<HotelList />} />
         </Routes>
       </HotelServiceContext.Provider>
