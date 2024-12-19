@@ -37,26 +37,32 @@ const HotelDetails: React.FC = () => {
 
   return (
     <Box sx={{ padding: 3 }}>
-      <Grid container justifyContent="flex-start" sx={{ marginBottom: 3 }}>
+      <Box sx={{ marginBottom: 3 }}>
         <Link to="/hotels">
           <Button variant="contained" color="primary">
             Back to Hotels
           </Button>
         </Link>
-      </Grid>
+      </Box>
       <Card sx={{ maxWidth: 1200, margin: "0 auto", boxShadow: 3 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+        <Box sx={{ display: "flex", flexDirection: "row", padding: 3 }}>
+          <Box sx={{ width: "50%" }}>
             <CardMedia
               component="img"
               height="100%"
               image={hotel.imageUrl || defaultImageUrl}
               alt={hotel.name}
               onError={handleImageError}
-              sx={{ width: "100%", height: 400, objectFit: "cover", borderRadius: "8px" }}
+              sx={{
+                width: "100%",
+                height: 400,
+                objectFit: "cover",
+                borderRadius: "8px",
+                transition: "all 0.3s ease", // Smooth transition
+              }}
             />
-          </Grid>
-          <Grid item xs={12} md={6}>
+          </Box>
+          <Box sx={{ width: "50%" }}>
             <CardContent>
               <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
                 {hotel.name}
@@ -84,8 +90,8 @@ const HotelDetails: React.FC = () => {
                 ))}
               </ul>
             </CardContent>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Card>
     </Box>
   );
