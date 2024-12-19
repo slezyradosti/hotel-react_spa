@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HotelServiceContext } from "../context/hotelServiceContext";
 import HotelCard from "../components/HotelCard";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 interface Hotel {
   id: number;
@@ -17,26 +17,32 @@ interface Hotel {
 const HotelList: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const hotelService = useContext(HotelServiceContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getHotels = async () => {
       try {
-        const data = await hotelService?.getAllNotes();
+        const data = await hotelService?.getAllHotels();
+        
         if (data) {
           setHotels(data);
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
     getHotels();
   }, []);
 
+  if (loading) return <CircularProgress />;
+
   return (
     <Grid container spacing={4}>
         {hotels.map((hotel) => (
           <Grid item xs={12} sm={6} md={4} key={hotel.id}>
-            <HotelCard hotel={hotel} />
+            <HotelCard hotel={hotel} key={ hotel.id} />
           </Grid>
         ))}
       </Grid>
