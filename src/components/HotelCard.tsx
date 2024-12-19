@@ -17,6 +17,7 @@ import { Hotel } from "../models/Hotel";
 
 const HotelCard: React.FC<{ hotel: Hotel }> = ({ hotel }) => {
   const fallbackImage = "https://via.placeholder.com/345x194?text=No+Image+Available";
+  const dateRange = hotel.datesOfTravel.length === 2 ? `${hotel.datesOfTravel[0]} - ${hotel.datesOfTravel[1]}` : "Invalid date range";
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -34,30 +35,19 @@ const HotelCard: React.FC<{ hotel: Hotel }> = ({ hotel }) => {
         alt={hotel.name}
       />
       <CardContent>
-        {/* Rating */}
         <Typography variant="body2" color="text.secondary">
           Rating:
         </Typography>
         <Rating value={hotel.rating} readOnly precision={0.5} />
 
-        {/* Dates of Travel */}
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Dates of Travel:
+          Dates of Travel: {dateRange}
         </Typography>
-        <List>
-          {hotel.datesOfTravel.map((date, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemText primary={date} />
-            </ListItem>
-          ))}
-        </List>
 
-        {/* Board Basis */}
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
           Board Basis: {hotel.boardBasis}
         </Typography>
 
-        {/* Rooms */}
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
           Rooms:
         </Typography>
