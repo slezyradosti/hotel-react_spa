@@ -1,6 +1,6 @@
 # hotel-react_spa
  
-SPA app for Hotel-Api app
+SPA app for [Hotel-Api](https://github.com/slezyradosti/Hotel-App) app
 
 A React app that displays a list of hotels fetched from a backend API, with the ability to view hotel details. Any invalid URL redirects to the hotel list.
 
