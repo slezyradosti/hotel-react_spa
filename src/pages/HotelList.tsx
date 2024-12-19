@@ -33,7 +33,7 @@ const HotelList: React.FC = () => {
       }
     };
     getHotels();
-  }, []);
+  });
 
   if (loading) return <CircularProgress />;
 

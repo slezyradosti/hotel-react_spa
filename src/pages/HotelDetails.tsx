@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import { CircularProgress, Typography, Box, Button, Card, CardContent, Grid, CardMedia } from "@mui/material";
+import { CircularProgress, Typography, Box, Button, Card, CardContent, CardMedia } from "@mui/material";
 import { HotelServiceContext } from "../context/hotelServiceContext";
 import { Hotel } from "../models/Hotel";
 
