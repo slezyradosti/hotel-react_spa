@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Hotel } from "../../models/Hotel";
 
-const API_BASE_URL = "http://localhost:7140";
+const API_BASE_URL = "http://localhost:5032";
 
 const fetchHotels = async (): Promise<Hotel[]>  => {
   const response = await axios.get<Hotel[]>(`${API_BASE_URL}/hotels`);
@@ -13,7 +13,7 @@ const fetchHotelsById = async (id: number): Promise<Hotel[]>  => {
   return response.data;
 };
 
-export const HotelsAgent = {
+export const HotelAgent = {
   getAllHotels: () => fetchHotels(),
   getHotelById: (id: number) => fetchHotelsById(id),
 }
