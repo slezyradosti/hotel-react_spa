@@ -6,8 +6,13 @@ export class HotelService {
     
   }
 
-  getAllNotes = async (): Promise<Hotel[]> => {
+  getAllHotels = async (): Promise<Hotel[]> => {
     const hotels = await HotelAgent.getAllHotels();
     return hotels;
+  }
+
+  getHotelById = async (id: number): Promise<Hotel> => {
+    const hotel = await HotelAgent.getHotelById(id);
+    return hotel;
   }
 }

@@ -8,8 +8,8 @@ const fetchHotels = async (): Promise<Hotel[]>  => {
   return response.data;
 };
 
-const fetchHotelsById = async (id: number): Promise<Hotel[]>  => {
-  const response = await axios.get<Hotel[]>(`${API_BASE_URL}/hotels/${id}`);
+const fetchHotelsById = async (id: number): Promise<Hotel>  => {
+  const response = await axios.get<Hotel>(`${API_BASE_URL}/hotels/${id}`);
   return response.data;
 };
 
